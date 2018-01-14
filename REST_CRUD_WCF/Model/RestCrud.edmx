@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="coffee_roomModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'coffee_room.dbo.dish' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="dish">
+          <Key>
+            <PropertyRef Name="dish_id" />
+          </Key>
+          <Property Name="dish_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dish_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="price" Type="float" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'coffee_room.dbo.dish_images' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="dish_images">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dish_id" Type="int" />
+          <Property Name="image" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'coffee_room.dbo.ingredient_images' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ingredient_images">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ingredient_id" Type="int" />
+          <Property Name="image" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'coffee_room.dbo.ingredients' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ingredients">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="product_price" Type="float" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'coffee_room.dbo.recipes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="recipes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dish_id" Type="int" />
+          <Property Name="ingredient_id" Type="int" />
+          <Property Name="weight" Type="float" />
+        </EntityType>
+        <EntityContainer Name="coffee_roomModelStoreContainer">
+          <EntitySet Name="dish" EntityType="Self.dish" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [dish].[dish_id] AS [dish_id], 
+    [dish].[dish_name] AS [dish_name], 
+    [dish].[price] AS [price]
+    FROM [dbo].[dish] AS [dish]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="dish_images" EntityType="Self.dish_images" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [dish_images].[id] AS [id], 
+    [dish_images].[dish_id] AS [dish_id], 
+    [dish_images].[image] AS [image]
+    FROM [dbo].[dish_images] AS [dish_images]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ingredient_images" EntityType="Self.ingredient_images" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ingredient_images].[id] AS [id], 
+    [ingredient_images].[ingredient_id] AS [ingredient_id], 
+    [ingredient_images].[image] AS [image]
+    FROM [dbo].[ingredient_images] AS [ingredient_images]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ingredients" EntityType="Self.ingredients" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ingredients].[product_id] AS [product_id], 
+    [ingredients].[product_name] AS [product_name], 
+    [ingredients].[product_price] AS [product_price]
+    FROM [dbo].[ingredients] AS [ingredients]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="recipes" EntityType="Self.recipes" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [recipes].[id] AS [id], 
+    [recipes].[dish_id] AS [dish_id], 
+    [recipes].[ingredient_id] AS [ingredient_id], 
+    [recipes].[weight] AS [weight]
+    FROM [dbo].[recipes] AS [recipes]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="coffee_roomModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="dish">
+          <Key>
+            <PropertyRef Name="dish_id" />
+          </Key>
+          <Property Name="dish_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dish_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Double" />
+        </EntityType>
+        <EntityType Name="dish_images">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dish_id" Type="Int32" />
+          <Property Name="image" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ingredient_images">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ingredient_id" Type="Int32" />
+          <Property Name="image" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ingredient">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="product_price" Type="Double" />
+        </EntityType>
+        <EntityType Name="recipe">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dish_id" Type="Int32" />
+          <Property Name="ingredient_id" Type="Int32" />
+          <Property Name="weight" Type="Double" />
+        </EntityType>
+        <EntityContainer Name="coffee_room_Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="dishes" EntityType="Self.dish" />
+          <EntitySet Name="dish_images" EntityType="Self.dish_images" />
+          <EntitySet Name="ingredient_images" EntityType="Self.ingredient_images" />
+          <EntitySet Name="ingredients" EntityType="Self.ingredient" />
+          <EntitySet Name="recipes" EntityType="Self.recipe" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="coffee_roomModelStoreContainer" CdmEntityContainer="coffee_room_Entities">
+          <EntitySetMapping Name="dishes">
+            <EntityTypeMapping TypeName="coffee_roomModel.dish">
+              <MappingFragment StoreEntitySet="dish">
+                <ScalarProperty Name="dish_id" ColumnName="dish_id" />
+                <ScalarProperty Name="dish_name" ColumnName="dish_name" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dish_images">
+            <EntityTypeMapping TypeName="coffee_roomModel.dish_images">
+              <MappingFragment StoreEntitySet="dish_images">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="dish_id" ColumnName="dish_id" />
+                <ScalarProperty Name="image" ColumnName="image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ingredient_images">
+            <EntityTypeMapping TypeName="coffee_roomModel.ingredient_images">
+              <MappingFragment StoreEntitySet="ingredient_images">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ingredient_id" ColumnName="ingredient_id" />
+                <ScalarProperty Name="image" ColumnName="image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ingredients">
+            <EntityTypeMapping TypeName="coffee_roomModel.ingredient">
+              <MappingFragment StoreEntitySet="ingredients">
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="product_price" ColumnName="product_price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="recipes">
+            <EntityTypeMapping TypeName="coffee_roomModel.recipe">
+              <MappingFragment StoreEntitySet="recipes">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="dish_id" ColumnName="dish_id" />
+                <ScalarProperty Name="ingredient_id" ColumnName="ingredient_id" />
+                <ScalarProperty Name="weight" ColumnName="weight" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
